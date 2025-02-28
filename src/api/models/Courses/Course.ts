@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EntityBase } from '@base/infrastructure/abstracts/EntityBase';
 import { User } from '../Users/User';
+import { Assignment } from '../Assignments/Assignment';
 
 @Entity({ name: 'courses' })
 export class Course extends EntityBase {
@@ -24,4 +25,7 @@ export class Course extends EntityBase {
 
   @OneToMany(() => User, (user) => user.id)
   user: User[];
+
+  @OneToMany(() => Assignment, (assignment) => assignment.id)
+  assignment: Assignment[];
 }

@@ -1,18 +1,17 @@
 import { Service } from 'typedi';
-import { UserRepository } from '@api/repositories/Users/UserRepository';
-import { UserNotFoundException } from '@api/exceptions/Users/UserNotFoundException';
 import { EventDispatcher, EventDispatcherInterface } from '@base/decorators/EventDispatcher';
 import { InjectRepository } from 'typeorm-typedi-extensions';
 import { CourseRepository } from '@base/api/repositories/Courses/CourseRepository';
+import { AssignmentRepository } from '@base/api/repositories/Assignments/AssignmentRepository';
 
 @Service()
-export class CourseService {
-  constructor(@InjectRepository() private courseRepository: CourseRepository, @EventDispatcher() private eventDispatcher: EventDispatcherInterface) {
+export class AssignmentService {
+  constructor(@InjectRepository() private assignmentRepository: AssignmentRepository, @EventDispatcher() private eventDispatcher: EventDispatcherInterface) {
     //
   }
 
   public async getAll(resourceOptions?: object) {
-    return await this.courseRepository.getManyAndCount(resourceOptions);
+    return await this.assignmentRepository.getManyAndCount(resourceOptions);
   }
 
   public async findOneById(id: number, resourceOptions?: object) {
@@ -20,7 +19,7 @@ export class CourseService {
   }
 
   public async create(data: object) {
-    let course = await this.courseRepository.createCourse(data);
+    let course = await this.assignmentRepository.createAssignment(data);
 
     return course;
   }
@@ -28,15 +27,15 @@ export class CourseService {
   public async updateOneById(id: number, data: object) {
     const course = await this.getRequestedUserOrFail(id);
 
-    return await this.courseRepository.updateCourse(course, data);
+    return await this.assignmentRepository.updateAssignment(course, data);
   }
 
   public async deleteOneById(id: number) {
-    return await this.courseRepository.delete(id);
+    return await this.assignmentRepository.delete(id);
   }
 
   private async getRequestedUserOrFail(id: number, resourceOptions?: object) {
-    let course = await this.courseRepository.getOneById(id, resourceOptions);
+    let course = await this.assignmentRepository.getOneById(id, resourceOptions);
 
     if (!course) {
       console.log('course does not exits', 404);

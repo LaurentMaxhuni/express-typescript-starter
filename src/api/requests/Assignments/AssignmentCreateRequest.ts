@@ -1,20 +1,17 @@
 import { IsNotEmpty, IsEmail, IsString, MinLength, MaxLength, IsDate } from 'class-validator';
 
-export class CourseCreateRequest {
+export class AssignmentCreateRequest {
   @MaxLength(20)
   @MinLength(2)
   @IsString()
   @IsNotEmpty()
-  course_name: string;
+  assignment_name: string;
 
   @MinLength(2)
   @IsString()
   @IsNotEmpty()
-  description: string;
+  assignment_description: string;
 
   @IsDate()
-  start_date: Date;
-
-  @IsDate()
-  end_date: Date;
+  date_assigned: Date;
 }
