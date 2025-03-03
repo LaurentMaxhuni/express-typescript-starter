@@ -14,8 +14,8 @@ export class UserService {
     return await this.userRepository.getManyAndCount(resourceOptions);
   }
 
-  public async findOneById(id: number, resourceOptions?: object) {
-    return await this.getRequestedUserOrFail(id, resourceOptions);
+  public async findOneById(user_id: number, resourceOptions?: object) {
+    return await this.getRequestedUserOrFail(user_id, resourceOptions);
   }
 
   public async create(data: object) {
@@ -26,18 +26,18 @@ export class UserService {
     return user;
   }
 
-  public async updateOneById(id: number, data: object) {
-    const user = await this.getRequestedUserOrFail(id);
+  public async updateOneById(user_id: number, data: object) {
+    const user = await this.getRequestedUserOrFail(user_id);
 
     return await this.userRepository.updateUser(user, data);
   }
 
-  public async deleteOneById(id: number) {
-    return await this.userRepository.delete(id);
+  public async deleteOneById(user_id: number) {
+    return await this.userRepository.delete(user_id);
   }
 
-  private async getRequestedUserOrFail(id: number, resourceOptions?: object) {
-    let user = await this.userRepository.getOneById(id, resourceOptions);
+  private async getRequestedUserOrFail(user_id: number, resourceOptions?: object) {
+    let user = await this.userRepository.getOneById(user_id, resourceOptions);
 
     if (!user) {
       throw new UserNotFoundException();

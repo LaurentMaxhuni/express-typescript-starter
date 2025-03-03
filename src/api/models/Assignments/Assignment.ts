@@ -5,7 +5,7 @@ import { Course } from '../Courses/Course';
 @Entity({ name: 'assignments' })
 export class Assignment extends EntityBase {
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  assignment_id: number;
 
   @Column()
   assignment_name: string;

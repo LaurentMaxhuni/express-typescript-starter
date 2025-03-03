@@ -6,7 +6,7 @@ import { Assignment } from '../Assignments/Assignment';
 @Entity({ name: 'courses' })
 export class Course extends EntityBase {
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  course_id: number;
 
   @Column()
   course_name: string;
@@ -23,9 +23,9 @@ export class Course extends EntityBase {
   @Column()
   end_date: Date;
 
-  @OneToMany(() => User, (user) => user.id)
+  @OneToMany(() => User, (user) => user.user_id)
   user: User[];
 
-  @OneToMany(() => Assignment, (assignment) => assignment.id)
+  @OneToMany(() => Assignment, (assignment) => assignment.assignment_id)
   assignment: Assignment[];
 }

@@ -7,7 +7,7 @@ import { HashService } from '@base/infrastructure/services/hash/HashService';
 @Entity({ name: 'users' })
 export class User extends EntityBase {
   @PrimaryGeneratedColumn('increment')
-  id: number;
+  user_id: number;
 
   @Column()
   first_name: string;
