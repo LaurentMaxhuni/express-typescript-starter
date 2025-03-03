@@ -58,4 +58,10 @@ export class UserController extends ControllerBase {
   public async delete(@Param('id') id: number) {
     return await this.userService.deleteOneById(id);
   }
+
+  @Get("/role/:id")
+  public async getUserWithRole(@Param("id") id: number, @QueryParams() parseResourceOptions: RequestQueryParser) {
+    const user = await this.userService.getUserWithRole(id);
+    return user;
+  }
 }

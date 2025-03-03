@@ -36,6 +36,10 @@ export class UserService {
     return await this.userRepository.delete(user_id);
   }
 
+  public async getUserWithRole(id: number) {
+    return await 
+  }
+
   private async getRequestedUserOrFail(user_id: number, resourceOptions?: object) {
     let user = await this.userRepository.getOneById(user_id, resourceOptions);
 

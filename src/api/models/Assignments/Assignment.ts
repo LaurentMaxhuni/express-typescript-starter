@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
 import { EntityBase } from '@base/infrastructure/abstracts/EntityBase';
 import { Course } from '../Courses/Course';
 
@@ -8,9 +9,11 @@ export class Assignment extends EntityBase {
   assignment_id: number;
 
   @Column()
+  @IsNotEmpty()
   assignment_name: string;
 
   @Column()
+  @IsNotEmpty()
   assignment_description: string;
 
   @Column()
