@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsNotEmpty, IsEmail, IsString, MinLength, MaxLength, IsDate } from 'class-validator';
 
 export class AssignmentCreateRequest {
@@ -13,5 +14,6 @@ export class AssignmentCreateRequest {
   assignment_description: string;
 
   @IsDate()
+  @Type(() => Date)
   date_assigned: Date;
 }

@@ -1,5 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { IsNotEmpty } from 'class-validator';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { EntityBase } from '@base/infrastructure/abstracts/EntityBase';
 import { Course } from '../Courses/Course';
 
@@ -9,11 +8,9 @@ export class Assignment extends EntityBase {
   assignment_id: number;
 
   @Column()
-  @IsNotEmpty()
   assignment_name: string;
 
   @Column()
-  @IsNotEmpty()
   assignment_description: string;
 
   @Column()
@@ -22,7 +19,6 @@ export class Assignment extends EntityBase {
   @Column()
   date_assigned: Date;
 
-  @ManyToOne(() => Course, course => course.assignment)
-  @JoinColumn({ name: 'course_id' })
-  course: Course;
+  // @ManyToOne(() => Course, course => course.assignment)
+  // course: Course;
 }
