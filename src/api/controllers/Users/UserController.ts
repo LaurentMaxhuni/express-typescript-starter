@@ -21,6 +21,11 @@ export class UserController extends ControllerBase {
     super();
   }
 
+  @Post('/:search?')
+  public async search(@Param('search') search: string) {
+    return await this.userService.getUsers(search);
+  }
+
   @Get()
   public async getAll(@QueryParams() parseResourceOptions: RequestQueryParser) {
     const resourceOptions = parseResourceOptions.getAll();

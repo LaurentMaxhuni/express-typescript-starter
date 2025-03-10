@@ -15,7 +15,7 @@ export class AssignmentService {
   }
 
   public async findOneById(id: number, resourceOptions?: object) {
-    return await this.getRequestedUserOrFail(id, resourceOptions);
+    return await this.getRequestedAssignmentOrFail(id, resourceOptions);
   }
 
   public async create(data: object) {
@@ -25,7 +25,7 @@ export class AssignmentService {
   }
 
   public async updateOneById(id: number, data: object) {
-    const course = await this.getRequestedUserOrFail(id);
+    const course = await this.getRequestedAssignmentOrFail(id);
 
     return await this.assignmentRepository.updateAssignment(course, data);
   }
@@ -34,13 +34,13 @@ export class AssignmentService {
     return await this.assignmentRepository.delete(id);
   }
 
-  private async getRequestedUserOrFail(id: number, resourceOptions?: object) {
-    let course = await this.assignmentRepository.getOneById(id, resourceOptions);
+  private async getRequestedAssignmentOrFail(id: number, resourceOptions?: object) {
+    let assignment = await this.assignmentRepository.getOneById(id, resourceOptions);
 
-    if (!course) {
-      console.log('course does not exits', 404);
+    if (!assignment) {
+      console.log('assignment does not exits', 404);
     }
 
-    return course;
+    return assignment;
   }
 }

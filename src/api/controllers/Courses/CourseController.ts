@@ -11,6 +11,7 @@ import { LoggedUser } from '@base/decorators/LoggedUser';
 import { LoggedUserInterface } from '@api/interfaces/users/LoggedUserInterface';
 import { CourseService } from '@base/api/services/Courses/CourseService';
 import { CourseCreateRequest } from '@api/requests/Courses/CourseCreateRequest';
+import { parse } from 'path';
 
 @Service()
 @OpenAPI({

@@ -14,7 +14,7 @@ export class CourseService {
   public async getAll(resourceOptions?: object) {
     return await this.courseRepository.getManyAndCount(resourceOptions);
   }
-
+  
   public async findOneById(id: number, resourceOptions?: object) {
     return await this.getRequestedUserOrFail(id, resourceOptions);
   }
