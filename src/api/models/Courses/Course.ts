@@ -1,31 +1,21 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { EntityBase } from '@base/infrastructure/abstracts/EntityBase';
-import { User } from '../Users/User';
-import { Assignment } from '../Assignments/Assignment';
+import { Enrollment } from '../Enrollments/Enrollment';
 
-@Entity({ name: 'courses' })
+@Entity({ name: 'course' })
 export class Course extends EntityBase {
   @PrimaryGeneratedColumn('increment')
   course_id: number;
 
   @Column()
-  course_name: string;
+  course_title: string;
 
   @Column()
-  description: string;
+  course_description: string;
 
   @Column()
-  user_id: number;
+  created_at: Date;
 
-  @Column()
-  start_date: Date;
-
-  @Column()
-  end_date: Date;
-
-  @OneToMany(() => User, (user) => user.user_id)
-  user: User[];
-
-  @OneToMany(() => Assignment, (assignment) => assignment.assignment_id)
-  assignment: Assignment[];
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.course)
+  enrollments: Enrollment[];
 }

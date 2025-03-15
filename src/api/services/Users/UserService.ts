@@ -10,32 +10,32 @@ export class UserService {
     //
   }
 
-   public async getUsers(search: string) {
-    const isSearchEmpty = !search || search.trim() === "";
+  //  public async getUsers(search: string) {
+  //   const isSearchEmpty = !search || search.trim() === "";
 
-    const queryBuilder = this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.role', 'role');
+  //   const queryBuilder = this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.role', 'role');
 
-    if(!isSearchEmpty) {
-      const searchFields = ['first_name', 'last_name', 'email'];
+  //   if(!isSearchEmpty) {
+  //     const searchFields = ['first_name', 'last_name', 'email'];
 
-      const orConditions = searchFields.map(field => `${field} LIKE :search`);
+  //     const orConditions = searchFields.map(field => `${field} LIKE :search`);
     
-      const whereClause = `${orConditions.join(" OR ")}`;
-      const searchValue = `%${search}%`;
+  //     const whereClause = `${orConditions.join(" OR ")}`;
+  //     const searchValue = `%${search}%`;
 
-      queryBuilder.andWhere(whereClause, {search: searchValue});
-    }
+  //     queryBuilder.andWhere(whereClause, {search: searchValue});
+  //   }
 
-    queryBuilder.select(['user.user_id', 'user.first_name', 'user.last_name', 'user.email', 'role.name']);
+  //   queryBuilder.select(['user.user_id', 'user.first_name', 'user.last_name', 'user.email', 'role.name']);
 
-    const users = await queryBuilder.getMany();
+  //   const users = await queryBuilder.getMany();
 
-    if(!users) {
-      throw new UserNotFoundException();
-    }
+  //   if(!users) {
+  //     throw new UserNotFoundException();
+  //   }
 
-    return users;
-  }
+  //   return users;
+  // }
 
 
   public async getAll(resourceOptions?: object) {
