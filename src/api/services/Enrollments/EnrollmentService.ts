@@ -22,9 +22,7 @@ export class EnrollmentService {
     return enrollment;
   }
 
-  public async delete(enrollment_id: number) {
-    const enrollment = await this.enrollmentRepository.findOne(enrollment_id);
-
-    return await this.enrollmentRepository.deleteEnrollment(enrollment);
+  public async deleteOneById(enrollment_id: number) {
+    return await this.enrollmentRepository.delete(enrollment_id);
   }
 }

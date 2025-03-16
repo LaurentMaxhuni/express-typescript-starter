@@ -1,4 +1,4 @@
-import { JsonController, Post, Body, HttpCode, UseBefore, Get, QueryParams, Delete } from 'routing-controllers';
+import { JsonController, Post, Body, HttpCode, UseBefore, Get, QueryParams, Delete, Param } from 'routing-controllers';
 import { Service } from 'typedi';
 import { AuthCheck } from '@base/infrastructure/middlewares/Auth/AuthCheck';
 import { ControllerBase } from '@base/infrastructure/abstracts/ControllerBase';
@@ -6,7 +6,6 @@ import { OpenAPI } from 'routing-controllers-openapi';
 import { EnrollmentService } from '@base/api/services/Enrollments/EnrollmentService';
 import { EnrollmentCreateRequest } from '@api/requests/Enrollments/EnrollmentCreateRequest';
 import { RequestQueryParser } from 'typeorm-simple-query-parser';
-import { parse } from 'path';
 
 @Service()
 @OpenAPI({
@@ -19,10 +18,10 @@ export class EnrollmentController extends ControllerBase {
     super();
   }
 
-  @Delete()
-  public async deleteEnrollment(@QueryParams() parseResourceOptions: RequestQueryParser) {
-    const resourceOptions = parseResourceOptions.getAll();
-    return await this.enrollmentService.delete(resourceOptions);
+  @Delete('/:id')
+  @HttpCode(204)
+  public async delete(@Param('id') id: number) {
+    return await this.enrollmentService.deleteOneById(id);
   }
 
   @Get()
