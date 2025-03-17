@@ -13,7 +13,9 @@ export class EnrollmentService {
   }
 
   public async viewEnrollments(resourceOptions?: object) {
-    return await this.enrollmentRepository.getManyAndCount(resourceOptions);
+    return await this.enrollmentRepository.find({
+      relations: ['student', 'course']
+    })
   }
 
   public async create(data: object) {

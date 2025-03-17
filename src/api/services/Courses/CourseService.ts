@@ -9,6 +9,16 @@ export class CourseService {
     //
   }
 
+  public async viewCourses(resourceOptions: object) {
+    const courses = await this.courseRepository.getManyAndCount(resourceOptions);
+    return courses;
+  }
+
+  public async findOneById(course_id: number) {
+    const course = await this.courseRepository.findOne(course_id);
+    return course;
+  }
+
   public async getAllStudentsBasedOnCourseId(course_id: number) {
     const course = await this.courseRepository.findOne(course_id, { relations: ['enrollments', 'enrollments.student'] });
 
@@ -24,5 +34,9 @@ export class CourseService {
     let course = await this.courseRepository.createCourse(data);
 
     return course;
+  }
+
+  public async deleteOneById(course_id: number) {
+    return await this.courseRepository.delete(course_id);
   }
 }

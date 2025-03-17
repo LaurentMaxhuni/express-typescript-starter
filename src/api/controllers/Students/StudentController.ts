@@ -29,6 +29,23 @@ export class StudentController extends ControllerBase {
     return await this.studentService.create(student);
   }
 
+  @Delete('/:id')
+  @HttpCode(204)
+  public async delete(@Param('id') id: number) {
+    return await this.studentService.deleteOneById(id);
+  }
+
+  @Get('/:id([0-9]+)')
+  public async findOneById(@Param('id') id: number) {
+    return await this.studentService.findOneById(id);
+  }
+
+  @Get()
+  public async viewStudents(@QueryParams() parseResourceOptions: RequestQueryParser) {
+    const resourceOptions = parseResourceOptions.getAll();
+    return await this.studentService.viewStudents(resourceOptions);
+  }
+
   @Get('/:id([0-9]+)/courses')
   public async getAllCoursesBasedOnStudentId(@Param('id') id: number) {
     return await this.studentService.getAllCoursesBasedOnStudentId(id);
