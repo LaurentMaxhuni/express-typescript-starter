@@ -19,6 +19,9 @@ export class User extends EntityBase {
   email: string;
 
   @Column()
+  referral_code: string;
+
+  @Column()
   @Exclude()
   password: string;
 

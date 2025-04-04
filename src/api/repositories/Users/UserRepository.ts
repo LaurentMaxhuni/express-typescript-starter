@@ -1,6 +1,7 @@
 import { User } from '@api/models/Users/User';
 import { EntityRepository } from 'typeorm';
 import { RepositoryBase } from '@base/infrastructure/abstracts/RepositoryBase';
+import { generateHashValue } from '@base/utils/hashValue';
 
 @EntityRepository(User)
 export class UserRepository extends RepositoryBase<User> {
